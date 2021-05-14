@@ -1,1 +1,86 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./variables";
+body{
+    margin: 0em;
+    padding: 0em;
+}
+
+
+.nav-bar-user-icon {
+    padding: 3px 6px;
+    margin: auto 10px;
+    border: solid $warning-color 2px;
+    border-radius: 30px;
+}
+
+.d-flex {
+    display: flex;
+} 
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.critical-alarm {
+    background-color: $critical-color;
+    color: $white-color;
+}
+
+.warning-alarm {
+    background-color: $warning-color;
+}
+
+.minor-alarm {
+    background-color: $minor-color;
+}
+
+.major-alarm {
+    background-color: $major-color;
+    color: $white-color;
+}
+
+.app-logo img{
+    width: 112px;
+}
+
+.ml-5 {
+    margin-left: 5px;
+}
+
+.ml-10 {
+    margin-left: 10px;
+}
+
+.ml-15 {
+    margin-left: 15px;
+}
+
+.mr-5 {
+    margin-right: 5px;
+}
+
+.mr-10 {
+    margin-right: 10px;
+}
+
+.mr-15 {
+    margin-right: 15px;
+}
+
+.p-grid.mt-50 {
+    margin-top: 50px;
+}
+
+.menu-bar {
+    .p-menubar-end {
+        width: 100%;
+    }
+}
+
+.checkbox-column-width {
+    width: 3rem;
+}

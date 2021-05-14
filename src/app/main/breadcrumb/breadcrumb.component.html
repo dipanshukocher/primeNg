@@ -1,0 +1,12 @@
+<p-card class="p-shadow-4">
+    <div class="p-d-flex p-ai-center p-jc-between">
+      <app-button [labelName]="'Home'"></app-button>
+      <div>
+        <app-dropdown [options]="menu" [(selectedMenu)]="selectedMenu" [placeholder]="'Menu'"
+        [label]="'name'" [showClear]="true" (menuChange)="confirmMenu($event)"></app-dropdown>
+        <app-button [labelName]="'Back'" [class]="'ml-15'"></app-button>
+      </div>
+    </div>
+</p-card>
+
+<p-messages [value]="msgs"></p-messages>

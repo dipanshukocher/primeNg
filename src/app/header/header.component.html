@@ -1,0 +1,39 @@
+<p-menubar class="menu-bar">
+    <div class="p-d-flex p-ai-center p-jc-between">
+        <div class="app-logo">
+            <img src="./../assets/images/brand-logo-1.jpg" alt="logo.jpg">
+        </div>
+
+        <div class="nav-content p-d-flex p-ai-center">
+            <span class="mr-15">Welcome {{userName}}</span>
+    
+            <app-button [labelName]="'Selected'" [class]="'mr-15'" (click)="op.toggle($event)" [icon]="'pi pi-bell'" [badge]="headerAlarms.length"></app-button>
+            <p-overlayPanel #op [showCloseIcon]="true" [style]="{width: '480px'}">
+                <ng-template pTemplate>
+                    <p-table [value]="headerAlarms" [rows]="5">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th pSortableColumn="severity">Severity<p-sortIcon field="severity"></p-sortIcon></th>
+                                <th>Description</th>
+                                <th pSortableColumn="nodeType">Node Type<p-sortIcon field="nodeType"></p-sortIcon></th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-rowData let-alarm>
+                            <tr [pSelectableRow]="rowData">
+                                <td [ngClass]="getRowClass(alarm.severity)">{{alarm.severity}}</td>
+                                <td>{{alarm.description}}</td>
+                                <td>{{alarm.nodeType}}</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </ng-template>
+            </p-overlayPanel>
+            
+            <button class="p-button-rounded p-button-info p-button-outlined mr-15" pButton pRipple type="button" icon="pi pi-user"></button>
+            <app-button [labelName]="'Logout'" [class]="'ml-15 mr-15'" (click)="confirmLogout()" [icon]="'pi pi-power-off'"></app-button>
+
+        </div>
+    </div>
+    <p-confirmDialog [baseZIndex]="10000"></p-confirmDialog>
+</p-menubar>
+<p-messages [value]="msgs"></p-messages>

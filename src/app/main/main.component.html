@@ -1,0 +1,58 @@
+<!-- breadcrumb menu starts here -->
+<app-breadcrumb></app-breadcrumb>
+<!-- breadcrumb menu ends here -->
+  
+<!-- table layout starts here-->
+<p-card class="p-shadow-4">
+  
+    <p-tabView (onChange)="onChangeTabView($event)">
+        <p-tabPanel header="Alarms"></p-tabPanel>
+        <p-tabPanel header="Node Type"></p-tabPanel>
+        <p-tabPanel header="Major ({{majorCount}})"></p-tabPanel>
+        <p-tabPanel header="Critical ({{criticalCount}})"></p-tabPanel>
+    </p-tabView>
+  
+    <p-table [value]="tableAlarms" (onHeaderCheckboxToggle)="onRowSelect($event)" (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowSelect($event)"
+        selectionMode="multiple" [(selection)]="selectedAlarm" dataKey="raiseTime">
+        <ng-template pTemplate="header">
+            <tr>
+                <th class="checkbox-column-width"><p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
+                <th>Severity</th>
+                <th>Description</th>
+                <th pSortableColumn="nodeType">Node Type<p-sortIcon field="nodeType"></p-sortIcon></th>
+                <th>Clearable</th>
+                <th>State</th>
+                <th>Raise Time</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-alarm>
+            <tr [pSelectableRow]="alarm">
+                <td><p-tableCheckbox [value]="alarm"></p-tableCheckbox></td>
+                <td [ngClass]="getRowClass(alarm.severity)">{{alarm.severity}}</td>
+                <td [innerHTML]="alarm.description"></td>
+                <td [innerHTML]="alarm.nodeType"></td>
+                <td [innerHTML]="alarm.clearable === true ? 'Yes' : 'No'"></td>
+                <td [innerHTML]="alarm.state"></td>
+                <td [innerHTML]="alarm.raiseTime"></td>
+            </tr>
+        </ng-template>
+    </p-table>
+</p-card>
+<!-- table layout ends here-->
+
+<!-- chart layout starts here -->
+<p-card class="p-shadow-4">
+    <div class="p-grid mt-50">
+      <div class="p-col">
+        <div class="card">
+          <app-charts [chartType]="'bar'" [chartData]="chartData" [chartOptions]="chartOptions"></app-charts>
+        </div>
+      </div>
+      <div class="p-col">
+        <div class="card">
+          <app-charts [chartType]="'doughnut'" [chartData]="chartData" [chartOptions]="chartOptions"></app-charts>
+        </div>
+      </div>
+    </div>
+</p-card>
+<!-- chart layout ends here -->
