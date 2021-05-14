@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { DataService } from '../modules/data/payload-services/data.service';
 import { NotificationService } from '../modules/data/app-services/notification.service';
 import { getRowClass } from '../modules/utils/grid-utils';
+import { AlarmService } from '../modules/data/payload-services/alarm.service';
 
 @Component({
   selector: 'app-main',
@@ -27,7 +28,8 @@ export class MainComponent implements OnInit {
   chartData: any;
   constructor(
     private dataService: DataService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private alarmService: AlarmService
   ) { }
 
   ngOnInit(): void {
@@ -40,7 +42,7 @@ export class MainComponent implements OnInit {
   }
 
   getData(): void {
-    this.tableDataObs = this.notificationService.getDummyData()
+    this.tableDataObs = this.alarmService.getDummyData()
     .subscribe(res=> {
       this.tableUnchangesData = JSON.parse(JSON.stringify(res));
       const majors = [];

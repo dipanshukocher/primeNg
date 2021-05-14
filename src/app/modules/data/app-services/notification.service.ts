@@ -7,13 +7,10 @@ import { Alarm } from '../../../app.model';
 @Injectable()
 export class NotificationService {
   public headerAlarmList = new Subject<any>();
-  constructor(private http: HttpClient, private dataService: DataService) { }
-  url: string = 'assets/dummy1.json';
+  constructor() { }
+  
   updateHeaderCard(list: any) {
     this.headerAlarmList.next(list);
   }
 
-  getDummyData(): Observable<Alarm[]> {
-    return this.dataService.get(this.url);
-  }
 }

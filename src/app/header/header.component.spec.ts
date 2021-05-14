@@ -23,8 +23,11 @@ describe('HeaderComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ HeaderComponent ],
       imports: [HttpClientModule],
-      providers: [ConfirmationService, 
-        { provide: NotificationService, useClass: notificationServiceSpy }, MessageService, DataService]
+      providers: [
+        ConfirmationService, 
+        { provide: NotificationService, useClass: notificationServiceSpy }, 
+        MessageService,
+        DataService]
     })
     .compileComponents();
   }));
@@ -42,13 +45,13 @@ describe('HeaderComponent', () => {
   });
 
   it('it should check header alarm list is updated via service subscription' , () => {
-    fixture.detectChanges();
+    component.ngOnInit();
     const expectedData = {description: 'Signal Degrade', severity: 'CRITICAL', nodeType: 'MONITOR'};
     expect(component.headerAlarms[0]).toEqual(expectedData);
   });
 
   it('it should check severity alarm class code via util function' , () => {
-    fixture.detectChanges();
+    component.ngOnInit();
     const severityData = 'CRITICAL';
     expect(component.getRowClass(severityData)).toEqual('critical-alarm');
   });
